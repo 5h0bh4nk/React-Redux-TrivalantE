@@ -2,6 +2,7 @@ import React from 'react';
 import ParticlesBg from 'particles-bg'
 import Main from './components/MainComponent'
 import { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom'
 
 let config = {
   num: [4, 7],
@@ -34,10 +35,12 @@ class App extends Component{
 render(){
   return (
     <>
+    <BrowserRouter>
     <div>
       <Main />
     </div>
     <ParticlesBg type="random" num={10} bg={true} />
+    </BrowserRouter>
     </>
   );
 }
