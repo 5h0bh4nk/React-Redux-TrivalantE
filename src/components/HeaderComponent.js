@@ -10,7 +10,7 @@ class Header extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
+        this.props = {
             isNavOpen: false,
             isModalOpen: false
         };
@@ -21,12 +21,12 @@ class Header extends Component {
 
     toggleNav(){
         this.setState({
-            isNavOpen: !this.state.isNavOpen
+            isNavOpen: !this.props.isNavOpen
         });
     }
     toggleModal() {
         this.setState({
-          isModalOpen: !this.state.isModalOpen
+          isModalOpen: !this.props.isModalOpen
         });
     }
     handleLogin(event) {
@@ -34,7 +34,7 @@ class Header extends Component {
         alert("Username: " + this.username.value + " Password: " + this.password.value
             + " Remember: " + this.remember.checked);
         event.preventDefault();
-
+        //prevent default prevents from refreshing or going to another page
     }
 
     render() {
@@ -88,7 +88,7 @@ class Header extends Component {
                         </div>
                     </div>
                 </Jumbotron>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <Modal isOpen={this.props.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
                     <ModalBody>
                     
