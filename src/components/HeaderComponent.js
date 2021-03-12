@@ -10,7 +10,7 @@ class Header extends Component {
 
     constructor(props){
         super(props);
-        this.props = {
+        this.state = {
             isNavOpen: false,
             isModalOpen: false
         };
@@ -21,12 +21,13 @@ class Header extends Component {
 
     toggleNav(){
         this.setState({
-            isNavOpen: !this.props.isNavOpen
+            isNavOpen: !this.state.isNavOpen
         });
     }
+
     toggleModal() {
         this.setState({
-          isModalOpen: !this.props.isModalOpen
+          isModalOpen: !this.state.isModalOpen
         });
     }
     handleLogin(event) {
@@ -43,11 +44,11 @@ class Header extends Component {
                 <Navbar dark expand="md">
                     {/* /*collapse the navbar*/ }
                     <div className="container">
-                    <NavbarToggler onclick={this.toggleNav} />
+                    <NavbarToggler onClick={this.toggleNav} />
                     <NavbarBrand className="mr-auto" href='/'>
                         <img src="assets/images/logo.png" height = "30" width= "41" alt="Trivalante" />
                     </NavbarBrand>
-                    <Collapse isOpen={true} navbar>
+                    <Collapse isOpen={this.state.isNavOpen} navbar>
                         <Nav navbar>
                             <NavItem>
                                 <NavLink className="nav-link" to="/home">
@@ -73,6 +74,32 @@ class Header extends Component {
                         <Nav className="ml-auto" navbar>
                                 <NavItem>
                                     <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+                                    <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                                        <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                                        <ModalBody>
+                                        
+                                        <Form onSubmit={this.handleLogin}>
+                                                <FormGroup>
+                                                    <Label htmlFor="username">Username</Label>
+                                                    <Input type="text" id="username" name="username"
+                                                        innerRef={(input) => this.username = input} />
+                                                </FormGroup>
+                                                <FormGroup>
+                                                    <Label htmlFor="password">Password</Label>
+                                                    <Input type="password" id="password" name="password"
+                                                        innerRef={(input) => this.password = input}  />
+                                                </FormGroup>
+                                                <FormGroup check>
+                                                    <Label check>
+                                                        <Input type="checkbox" name="remember"
+                                                        innerRef={(input) => this.remember = input}  />
+                                                        Remember me
+                                                    </Label>
+                                                </FormGroup>
+                                                <Button type="submit" value="submit" color="primary">Login</Button>
+                                            </Form>
+                                        </ModalBody>
+                                    </Modal>
                                 </NavItem>
                         </Nav>
                     </Collapse>
@@ -88,32 +115,6 @@ class Header extends Component {
                         </div>
                     </div>
                 </Jumbotron>
-                <Modal isOpen={this.props.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
-                    <ModalBody>
-                    
-                    <Form onSubmit={this.handleLogin}>
-                            <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
-                                    innerRef={(input) => this.username = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
-                                    innerRef={(input) => this.password = input}  />
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" name="remember"
-                                    innerRef={(input) => this.remember = input}  />
-                                    Remember me
-                                </Label>
-                            </FormGroup>
-                            <Button type="submit" value="submit" color="primary">Login</Button>
-                        </Form>
-                    </ModalBody>
-                </Modal>
             </>
         )
     }
