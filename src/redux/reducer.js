@@ -1,16 +1,10 @@
-import {DISHES} from '../shared/dishes'
-import { COMMENTS } from '../shared/comments';
-import { PROMOTIONS } from '../shared/promotions';
-import { LEADERS } from '../shared/leaders';
+Reducers are used to store the initial state of data and 
+apply action when we require .
+Here , we have divided the reducers into its distinct parts like 
+dishes
+leaders , etc
 
-export const initialState={
-    dishes: DISHES,
-    comments: COMMENTS,
-    promotions: PROMOTIONS,
-    leaders: LEADERS
-}
+These reducers are then imported to configure store and rest operations atre performed three
 
-//default value ised
-export const Reducer = (state = initialState, action) =>{
-    return state;
-}
+
+ThIs file is thus no longer in use .
